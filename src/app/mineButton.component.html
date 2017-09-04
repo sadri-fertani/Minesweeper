@@ -1,12 +1,12 @@
-<button style="width: 50px;height: 38px" *ngIf="cel.state == 0" type="button" class="btn btn-secondary" (contextmenu)="markMine($event)" (click)="isThereAMine($event)">
+<button style="width: 50px;height: 38px" *ngIf="cel.state == 0" type="button" class="btn btn-secondary" (contextmenu)="markMine($event)" (click)="isThereAMine($event)" (press)="markMine($event)" (tap)="isThereAMine($event)">
 
 </button>
 
-<button style="width: 50px;height: 38px" *ngIf="cel.state == 1" type="button" class="btn btn-secondary" (contextmenu)="markMine($event)" (click)="isThereAMine($event)">
+<button style="width: 50px;height: 38px" *ngIf="cel.state == 1" type="button" class="btn btn-secondary" (contextmenu)="markMine($event)" (click)="isThereAMine($event)" (press)="markMine($event)" (tap)="isThereAMine($event)">
     <span class="bv bhm" style="color:purple !important"></span>
 </button>
 
-<button style="width: 50px;height: 38px" *ngIf="cel.state == 2" type="button" class="btn btn-secondary" (contextmenu)="markMine($event)">
+<button style="width: 50px;height: 38px" *ngIf="cel.state == 2" type="button" class="btn btn-secondary" (contextmenu)="markMine($event)" (press)="markMine($event)">
     <span class="bv biw" style="color:green !important"></span>
 </button>
 
