@@ -10,7 +10,7 @@ import { Point } from './point'
 import { Cell, State } from './cell';
 
 import { Utils } from './utils';
-import { MineButtonComponent } from "app/mineButton.component";
+import { MineButtonComponent } from "./mineButton.component";
 
 @Component({
   selector: 'app-root',
@@ -24,11 +24,17 @@ export class AppComponent {
   private grille: Cell[][];
   private mines: number[];
   private numberMarkedMines: number = 0;
+  private numberClicked: number = 0;
+
+  public verifEndGame(): void {
+    if (this.NB_MINES == this.NB_ROWS * this.NB_ROWS - ++this.numberClicked)
+      this.successCurrentGame();
+  }
 
   public markMine(): void {
     ++this.numberMarkedMines;
-    
-    if(this.numberMarkedMines == this.NB_MINES)
+
+    if (this.numberMarkedMines == this.NB_MINES)
       this.successCurrentGame();
   }
 
@@ -75,6 +81,8 @@ export class AppComponent {
 
   private newGame(): void {
     this.numberMarkedMines = 0;
+    this.numberClicked = 0;
+
     console.log('new game');
 
     this.calculMines();
@@ -120,11 +128,11 @@ export class AppComponent {
 
     let positionTemp: number;
 
-    let i = 0; 
+    let i = 0;
 
-    while(i < this.mines.length) {
+    while (i < this.mines.length) {
       positionTemp = this.Util.getRandomInt(0, this.NB_ROWS * this.NB_ROWS - 1);
-      
+
       if (this.mines.find(x => x == positionTemp) == null)
         this.mines[i++] = positionTemp;
     }

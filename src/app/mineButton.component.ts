@@ -47,6 +47,7 @@ export class MineButtonComponent implements OnInit {
     if (this.cel.isMine)
       this.app.finishCurrentGame();
     else {
+      this.app.verifEndGame();
       if (event != undefined && event.which == 3) {
         console.log('-----');
       } else {
