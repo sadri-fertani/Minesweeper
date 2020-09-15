@@ -111,6 +111,18 @@ export class AppComponent {
     console.log(this.grille);
   }
 
+  isMarked(x: number, y: number): boolean {
+    let lst: Array<MineButtonComponent> = this.mb.toArray();
+
+    if ((x >= 0 && x < this.NB_ROWS) && (y >= 0 && y < this.NB_ROWS)) {
+      let pos1dim = x * this.NB_ROWS + y;
+
+      return lst[pos1dim].cel.state == State.Marked;
+    }
+
+    return false;
+  }
+
   isMine(x: number, y: number): boolean {
     let indexMine: number = this.mines.findIndex(
       z => {

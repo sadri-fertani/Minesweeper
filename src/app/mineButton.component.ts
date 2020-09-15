@@ -23,14 +23,14 @@ export class MineButtonComponent implements OnInit {
     switch (this.cel.state) {
       case State.Init:
         this.cel.state = State.Marked;
-        
-        if(this.cel.isMine)
+
+        if (this.cel.isMine)
           this.app.markMine();
         break;
       case State.Marked:
         this.cel.state = State.Indeterminate;
-        
-        if(this.cel.isMine)
+
+        if (this.cel.isMine)
           this.app.unmarkMine();
         break;
       case State.Indeterminate:
@@ -66,6 +66,23 @@ export class MineButtonComponent implements OnInit {
           this.app.search(this.cel.position.x, this.cel.position.y);
         }
       }
+    }
+  }
+
+  clearAround(event: MouseEvent): void {
+    // Voisinage marked
+    let markedMines = 0;
+
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        if (i != 0 || j != 0) {
+          markedMines += this.app.isMarked(this.cel.position.x + i, this.cel.position.y + j) ? 1 : 0;
+        }
+      }
+    }
+
+    if (markedMines == this.cel.neerestMines) {
+      this.app.search(this.cel.position.x, this.cel.position.y);
     }
   }
 }
